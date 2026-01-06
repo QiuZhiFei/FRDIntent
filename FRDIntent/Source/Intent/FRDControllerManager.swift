@@ -77,6 +77,7 @@ public class FRDControllerManager: NSObject {
    - parameter source: The source view controller.
    - parameter intent: The intent for launch a new view controller.
    */
+  @MainActor
   @objc public func startController(from source: UIViewController, with intent: FRDIntent) {
 
     var parameters = [String: Any]()
@@ -124,6 +125,7 @@ public class FRDControllerManager: NSObject {
    - parameter intent: The intent for start new view controller.
    - parameter requestCode : this code will be returned in onControllerResult() when the view controller exits.
    */
+  @MainActor
   @objc public func startControllerForResult(from source: UIViewController, with intent: FRDIntent, requestCode: Int) {
 
     typealias ControllerType = FRDIntentForResultReceivable.Type
@@ -170,6 +172,7 @@ public class FRDControllerManager: NSObject {
 
   }
 
+  @MainActor
   private func viewController(fromClazz clazz: FRDIntentReceivable.Type?, extras: [String: Any]) -> FRDIntentReceivable? {
     guard let controllerClass = clazz else { return nil }
     return controllerClass.init(extras: extras)
