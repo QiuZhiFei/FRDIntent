@@ -9,7 +9,7 @@
 import XCTest
 @testable import FRDIntent
 
-class URLRoutesTests: XCTestCase {
+@MainActor class URLRoutesTests: XCTestCase {
 
   func testURLRoutes() {
     let router = FRDURLRoutes.sharedInstance

@@ -9,7 +9,7 @@
 import XCTest
 @testable import FRDIntent
 
-class FRDControllerManagerTests: XCTestCase {
+@MainActor class FRDControllerManagerTests: XCTestCase {
 
   func testNormalSearch() {
 

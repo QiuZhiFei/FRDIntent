@@ -9,7 +9,7 @@
 import XCTest
 @testable import FRDIntent
 
-class RouteSearch: XCTestCase {
+@MainActor class RouteSearch: XCTestCase {
 
   var routeManager: RouteManager!
 
