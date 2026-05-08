@@ -9,6 +9,7 @@
 import XCTest
 @testable import FRDIntent
 
+@MainActor
 class URLRoutesTests: XCTestCase {
 
   func testURLRoutes() {

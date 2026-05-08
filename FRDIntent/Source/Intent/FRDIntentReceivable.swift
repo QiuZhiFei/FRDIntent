@@ -18,5 +18,6 @@ import Foundation
    
    - parameter extras: The extra data.
    */
+  @MainActor
   init?(extras: [String: Any])
 }

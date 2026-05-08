@@ -11,10 +11,10 @@ import UIKit
 /**
  FRDURLRoutes is a way to manage URL routes and invoke them from a URL.
  */
-public class FRDURLRoutes: NSObject {
+final public class FRDURLRoutes: NSObject {
 
   /// Singleton instance of URLRoutes.
-  @objc public static let sharedInstance = FRDURLRoutes()
+  @objc public nonisolated(unsafe) static let sharedInstance = FRDURLRoutes()
 
   private let routeManager = RouteManager.sharedInstance
 
@@ -87,8 +87,18 @@ public extension FRDURLRoutes {
     let resultForRoute = register(url) { (params: [String: Any]) in
       guard let url = params[RouteManager.URLRouteURL] as? URL else { return }
       let intent = FRDIntent(url: url)
-      if let topViewController = UIApplication.topViewController() {
-        FRDControllerManager.sharedInstance.startController(from: topViewController, with: intent)
+      if Thread.isMainThread {
+        MainActor.assumeIsolated {
+          if let topViewController = UIApplication.topViewController() {
+            FRDControllerManager.sharedInstance.startController(from: topViewController, with: intent)
+          }
+        }
+      } else {
+        Task { @MainActor in
+          if let topViewController = UIApplication.topViewController() {
+            FRDControllerManager.sharedInstance.startController(from: topViewController, with: intent)
+          }
+        }
       }
     }
 
