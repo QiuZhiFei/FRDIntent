@@ -107,10 +107,8 @@ public class FRDControllerManager: NSObject, @unchecked Sendable {
         }
 
         if let destination = destination as? UIViewController {
-          MainActor.assumeIsolated {
-            destination.setupExtras(intent.extras)
-            display.displayViewController(from: source, to: destination)
-          }
+          destination.setupExtras(intent.extras)
+          display.displayViewController(from: source, to: destination)
         }
       }
 
