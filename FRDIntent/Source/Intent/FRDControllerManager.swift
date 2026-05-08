@@ -248,7 +248,7 @@ public extension UIViewController {
 
    - parameter extras: The datas of intent received.
    */
-  @objc func setupExtras(_ extras: [String: Any]) {
+  @objc nonisolated func setupExtras(_ extras: [String: Any]) {
     if let title = extras[FRDIntentParameters.title] as? String {
       self.title = title
     }
