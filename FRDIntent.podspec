@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :text => 'LICENSE' }
   s.author       = { "lincode" => "guolin@douban.com" }
 
-  s.platform     = :ios, "12.0"
+  s.platform     = :ios, "13.0"
   s.source       = { :git => "https://github.com/douban/FRDIntent.git", :tag => "#{s.version}" }
 
   s.subspec 'Intent' do |intent|

@@ -11,7 +11,7 @@ import UIKit
 /**
  FRDURLRoutes is a way to manage URL routes and invoke them from a URL.
  */
-public class FRDURLRoutes: NSObject {
+public class FRDURLRoutes: NSObject, @unchecked Sendable {
 
   /// Singleton instance of URLRoutes.
   @objc public static let sharedInstance = FRDURLRoutes()

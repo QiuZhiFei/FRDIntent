@@ -11,7 +11,7 @@ import UIKit
 /**
  FRDControllerManager is a way to manage view controllers and invoke view controllers from a URL or class name.
  */
-public class FRDControllerManager: NSObject {
+public class FRDControllerManager: NSObject, @unchecked Sendable {
 
   /// Singleton instance of FRDControllerManager
   @objc public static let sharedInstance = FRDControllerManager()
@@ -107,8 +107,10 @@ public class FRDControllerManager: NSObject {
         }
 
         if let destination = destination as? UIViewController {
-          destination.setupExtras(intent.extras)
-          display.displayViewController(from: source, to: destination)
+          MainActor.assumeIsolated {
+            destination.setupExtras(intent.extras)
+            display.displayViewController(from: source, to: destination)
+          }
         }
       }
 

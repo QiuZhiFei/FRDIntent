@@ -16,7 +16,7 @@ import Foundation
  The clazz is for FRDIntent's register.
  The handler is for URLRoute's register.
  */
-class RouteManager {
+class RouteManager: @unchecked Sendable {
 
   static let URLRouteURL = "URLRouteURL"
 
