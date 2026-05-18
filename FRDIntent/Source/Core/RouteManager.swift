@@ -16,12 +16,12 @@ import Foundation
  The clazz is for FRDIntent's register.
  The handler is for URLRoute's register.
  */
-class RouteManager {
+final class RouteManager {
 
   static let URLRouteURL = "URLRouteURL"
 
-  static let sharedInstance = RouteManager()
-  fileprivate var routes = Trie<RoutePathNodeValueType>()
+  nonisolated(unsafe) static let sharedInstance = RouteManager()
+  fileprivate nonisolated(unsafe) var routes = Trie<RoutePathNodeValueType>()
 
   // MARK: - Register
 

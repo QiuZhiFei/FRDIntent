@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "FRDIntent"
-  s.version      = "0.10.4"
+  s.version      = "0.10.6"
   s.summary      = "FRDIntent can handle the call between view controller"
 
   s.description  = "FRDIntent has two components URLRoutes and Intent, using for calling view controllers inner app or outer app."
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :text => 'LICENSE' }
   s.author       = { "lincode" => "guolin@douban.com" }
 
-  s.platform     = :ios, "8.0"
+  s.platform     = :ios, "13.0"
   s.source       = { :git => "https://github.com/douban/FRDIntent.git", :tag => "#{s.version}" }
 
   s.subspec 'Intent' do |intent|

@@ -11,10 +11,10 @@ import UIKit
 /**
  FRDControllerManager is a way to manage view controllers and invoke view controllers from a URL or class name.
  */
-public class FRDControllerManager: NSObject {
+final public class FRDControllerManager: NSObject {
 
   /// Singleton instance of FRDControllerManager
-  @objc public static let sharedInstance = FRDControllerManager()
+  @objc public nonisolated(unsafe) static let sharedInstance = FRDControllerManager()
 
   private let routeManager = RouteManager.sharedInstance
 
@@ -77,6 +77,7 @@ public class FRDControllerManager: NSObject {
    - parameter source: The source view controller.
    - parameter intent: The intent for launch a new view controller.
    */
+  @MainActor
   @objc public func startController(from source: UIViewController, with intent: FRDIntent) {
 
     var parameters = [String: Any]()
@@ -124,6 +125,7 @@ public class FRDControllerManager: NSObject {
    - parameter intent: The intent for start new view controller.
    - parameter requestCode : this code will be returned in onControllerResult() when the view controller exits.
    */
+  @MainActor
   @objc public func startControllerForResult(from source: UIViewController, with intent: FRDIntent, requestCode: Int) {
 
     typealias ControllerType = FRDIntentForResultReceivable.Type
@@ -170,6 +172,7 @@ public class FRDControllerManager: NSObject {
 
   }
 
+  @MainActor
   private func viewController(fromClazz clazz: FRDIntentReceivable.Type?, extras: [String: Any]) -> FRDIntentReceivable? {
     guard let controllerClass = clazz else { return nil }
     return controllerClass.init(extras: extras)
@@ -248,7 +251,9 @@ public extension UIViewController {
 
    - parameter extras: The datas of intent received.
    */
-  @objc func setupExtras(_ extras: [String: Any]) {
+  @MainActor
+  @objc
+  func setupExtras(_ extras: [String: Any]) {
     if let title = extras[FRDIntentParameters.title] as? String {
       self.title = title
     }
